@@ -26,7 +26,7 @@ const card = (product) => `
 document.querySelector('#app').innerHTML = `
   <div class="announcement">WELCOME GIFT · 회원가입 시 청첩장 샘플 키트 1종 증정 <button aria-label="공지 닫기">×</button></div>
   <header class="header">
-    <a class="logo" href="#top" aria-label="서제로 홈">seozero<span>°</span></a>
+    <a class="logo header-logo" href="#top" aria-label="서제로 홈"><img src="/logo.png" alt="서제로"></a>
     <nav class="desktop-nav" aria-label="주요 메뉴">
       <a href="#collection">COLLECTION</a><a href="#story">OUR STORY</a><a href="#guide">GUIDE</a>
     </nav>
@@ -44,10 +44,8 @@ document.querySelector('#app').innerHTML = `
         <p class="intro">서제로는 결혼이라는 특별한 날의 첫 장면을 만듭니다.<br>오래 바라볼수록 마음에 남는 청첩장을 소개합니다.</p>
         <a class="arrow-link" href="#collection">COLLECTION <b>→</b></a>
       </div>
-      <div class="hero-visual" aria-label="서제로 청첩장 컬렉션">
-        <div class="paper-shadow shadow-one"></div><div class="paper-shadow shadow-two"></div>
-        <div class="hero-card"><span class="script">our wedding day</span><span class="names">EUNSEO<br>&amp; JIHUN</span><span class="date">OCTOBER 18, 2026</span><i class="flower flower-a"></i><i class="flower flower-b"></i></div>
-        <div class="hero-caption">01 — A MOMENT IN BLOOM</div>
+      <div class="hero-visual photo-visual" aria-label="서제로 청첩장 컬렉션">
+        <img src="/photo.png" alt="서제로 청첩장 이미지">
       </div>
       <div class="hero-scroll">SCROLL TO DISCOVER <span>↓</span></div>
     </section>
