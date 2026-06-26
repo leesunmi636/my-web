@@ -35,6 +35,9 @@ document.querySelector('#app').innerHTML = `
 
   <main id="top">
     <section class="hero">
+      <div class="main-hero-image">
+        <img src="/main.png" alt="서제로 메인 청첩장 비주얼">
+      </div>
       <div class="hero-copy">
         <p class="eyebrow">WEDDING STATIONERY, MADE WITH CARE</p>
         <h1>두 사람의 시작을<br><em>가장 아름답게</em> 전하는 법.</h1>
