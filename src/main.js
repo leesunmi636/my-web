@@ -64,5 +64,5 @@ document.querySelector('#app').innerHTML = `
 
     <section class="journal"><p class="eyebrow">FROM SEOZERO JOURNAL</p><h2>결혼 준비의 순간들</h2><div class="journal-grid"><a href="#"><span>01</span><strong>청첩장, 언제부터 준비해야 할까요?</strong><b>→</b></a><a href="#"><span>02</span><strong>우리에게 어울리는 종이 고르기</strong><b>→</b></a><a href="#"><span>03</span><strong>마음을 전하는 청첩장 문구들</strong><b>→</b></a></div></section>
   </main>
-  <footer><div class="footer-top"><a class="logo" href="#top">seozero<span>°</span></a><p>인생의 가장 빛나는 시작을<br>아름다운 종이 위에 기록합니다.</p><a class="instagram" href="#instagram">INSTAGRAM ↗</a></div><div class="footer-bottom"><span>© 2026 SEOZERO. ALL RIGHTS RESERVED.</span><span>SEOUL, KOREA · HELLO@SEOZERO.COM</span><span>TERMS &nbsp; PRIVACY</span></div></footer>
+  <footer><div class="footer-top"><a class="logo footer-logo" href="#top" aria-label="서제로 홈"><img src="/logo.png" alt="서제로"></a><p>인생의 가장 빛나는 시작을<br>아름다운 종이 위에 기록합니다.</p><a class="instagram" href="#instagram">INSTAGRAM ↗</a></div><div class="footer-bottom"><span>© 2026 SEOZERO. ALL RIGHTS RESERVED.</span><span>SEOUL, KOREA · HELLO@SEOZERO.COM</span><span>TERMS &nbsp; PRIVACY</span></div></footer>
 `
