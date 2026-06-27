@@ -20,3 +20,23 @@
 .journal { padding:145px 8vw; }.journal h2 { margin-bottom:54px; }.journal-grid { border-top:1px solid var(--ink); }.journal-grid a { display:grid; grid-template-columns:10% 1fr auto; gap:20px; align-items:center; padding:24px 0; border-bottom:1px solid var(--line); transition:padding .25s; }.journal-grid a:hover { padding-left:12px; }.journal-grid span,.journal-grid b { font:500 10px 'Pretendard',sans-serif; font-weight:400; }.journal-grid strong { font:400 18px 'Pretendard',sans-serif; letter-spacing:-.05em; }
 footer { padding:60px 3.5vw 25px; background:#292722; color:#e9e5db; }.footer-top { display:grid; grid-template-columns:1fr 1fr auto; align-items:start; padding-bottom:100px; }.footer-top .logo { font-size:25px; }.footer-logo { display:flex; align-items:center; width:150px; height:72px; overflow:hidden; letter-spacing:0; }.footer-logo img { display:block; width:100%; height:auto; }.footer-top p { margin:0; color:#bbb5aa; font:14px/1.8 'Pretendard',sans-serif; }.instagram { font:500 10px 'Pretendard',sans-serif; border-bottom:1px solid #bbb5aa; padding-bottom:7px; }.footer-bottom { padding-top:20px; border-top:1px solid #57534b; display:flex; justify-content:space-between; color:#a8a297; font:500 8px 'Pretendard',sans-serif; letter-spacing:.03em; }
 @media (max-width:760px) { .announcement { font-size:8px; }.header { height:67px; padding:0 20px; }.logo{font-size:20px}.desktop-nav,.header-actions a,.search { display:none; }.menu { display:block; }.hero { min-height:auto; padding:98px 20px 90px; display:flex; flex-direction:column; gap:55px; }.main-hero-image { margin-bottom:-10px; }.main-hero-image img { height:clamp(190px,46vw,300px); }.hero h1,.statement h2,.custom h2 { font-size:38px; }.intro { font-size:13px; }.hero-visual { margin:0; width:100%; height:112vw; min-height:0; }.hero-scroll { left:20px; bottom:29px; }.statement { padding:100px 20px; }.statement > p:last-child { font-size:13px; }.collection { padding:85px 20px; }.section-heading { margin:0 0 36px; }.section-heading h2,.journal h2 { font-size:40px; }.product-grid { grid-template-columns:repeat(2,1fr); gap:28px 12px; }.product-art { height:52vw; }.product-info { display:block; }.product-info strong { display:block; margin-top:10px; }.custom { padding:75px 20px; grid-template-columns:1fr; gap:48px; }.custom-visual { height:106vw; }.custom-copy > p:not(.eyebrow) { font-size:13px; }.journal { padding:90px 20px; }.journal-grid a { grid-template-columns:32px 1fr auto; }.journal-grid strong { font-size:15px; }.footer-top { grid-template-columns:1fr; gap:35px; padding-bottom:60px; }.footer-bottom { display:flex; flex-direction:column; gap:10px; }.footer-bottom span:last-child { display:none; } }
+
+.consult { padding:120px 13%; display:grid; grid-template-columns:.82fr 1fr; gap:10%; align-items:start; background:#f7f5f0; border-top:1px solid var(--line); }
+.consult-copy h2 { margin:0 0 25px; font:400 clamp(38px,4.2vw,65px)/1.24 'Pretendard',sans-serif; letter-spacing:-.06em; }
+.consult-copy p:not(.eyebrow) { margin:0; color:#5d584f; font:14px/1.9 'Pretendard',sans-serif; }
+.consult-form { display:grid; gap:18px; }
+.consult-form label { display:grid; gap:9px; }
+.consult-form span { color:#615c53; font:500 10px 'Pretendard',sans-serif; letter-spacing:.06em; text-transform:uppercase; }
+.consult-form input,.consult-form textarea { width:100%; border:1px solid var(--line); border-radius:0; padding:14px 15px; background:#fff; color:var(--ink); font:14px/1.5 'Pretendard',sans-serif; outline:none; }
+.consult-form textarea { resize:vertical; min-height:140px; }
+.consult-form input:focus,.consult-form textarea:focus { border-color:#292722; }
+.consult-form .dark-button { width:max-content; margin-top:4px; }
+.consult-form .dark-button:disabled { opacity:.55; cursor:not-allowed; }
+.form-status { min-height:20px; margin:0; color:#615c53; font:13px/1.5 'Pretendard',sans-serif; }
+
+@media (max-width:760px) {
+  .consult { padding:80px 20px; grid-template-columns:1fr; gap:36px; }
+  .consult-copy h2 { font-size:38px; }
+  .consult-copy p:not(.eyebrow) { font-size:13px; }
+  .consult-form .dark-button { width:100%; justify-content:space-between; }
+}

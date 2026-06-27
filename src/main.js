@@ -62,7 +62,67 @@ document.querySelector('#app').innerHTML = `
       <div class="custom-copy"><p class="eyebrow">YOUR OWN CHAPTER</p><h2>우리다운 청첩장을<br>함께 만들어가요.</h2><p>종이, 글꼴, 색감부터 문장 하나까지.<br>서제로의 맞춤 디자인 서비스로 온전히 당신다운<br>첫인사를 완성해 보세요.</p><a class="dark-button" href="#consult">1:1 DESIGN CONSULTING <span>→</span></a></div>
     </section>
 
+    <section class="consult" id="consult">
+      <div class="consult-copy">
+        <p class="eyebrow">DESIGN CONSULTING</p>
+        <h2>Request</h2>
+        <p>청첩장 상담을 남겨주시면 확인 후 연락드립니다.</p>
+      </div>
+      <form class="consult-form" data-consult-form>
+        <label>
+          <span>Name</span>
+          <input name="name" autocomplete="name" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button class="dark-button" type="submit">SEND REQUEST <span>></span></button>
+        <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+      </form>
+    </section>
+
     <section class="journal"><p class="eyebrow">FROM SEOZERO JOURNAL</p><h2>결혼 준비의 순간들</h2><div class="journal-grid"><a href="#"><span>01</span><strong>청첩장, 언제부터 준비해야 할까요?</strong><b>→</b></a><a href="#"><span>02</span><strong>우리에게 어울리는 종이 고르기</strong><b>→</b></a><a href="#"><span>03</span><strong>마음을 전하는 청첩장 문구들</strong><b>→</b></a></div></section>
   </main>
   <footer><div class="footer-top"><a class="logo footer-logo" href="#top" aria-label="서제로 홈"><img src="/logo.png" alt="서제로"></a><p>인생의 가장 빛나는 시작을<br>아름다운 종이 위에 기록합니다.</p><a class="instagram" href="#instagram">INSTAGRAM ↗</a></div><div class="footer-bottom"><span>© 2026 SEOZERO. ALL RIGHTS RESERVED.</span><span>SEOUL, KOREA · HELLO@SEOZERO.COM</span><span>TERMS &nbsp; PRIVACY</span></div></footer>
 `
+
+const appsScriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL
+const consultForm = document.querySelector('[data-consult-form]')
+const formStatus = document.querySelector('[data-form-status]')
+
+consultForm?.addEventListener('submit', async (event) => {
+  event.preventDefault()
+
+  if (!appsScriptUrl) {
+    formStatus.textContent = 'Apps Script URL이 설정되지 않았습니다.'
+    return
+  }
+
+  const submitButton = consultForm.querySelector('button[type="submit"]')
+  const formData = new FormData(consultForm)
+  const payload = Object.fromEntries(formData.entries())
+
+  formStatus.textContent = '전송 중입니다.'
+  submitButton.disabled = true
+
+  try {
+    await fetch(appsScriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    })
+
+    consultForm.reset()
+    formStatus.textContent = '상담 신청이 접수되었습니다.'
+  } catch (error) {
+    formStatus.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.'
+  } finally {
+    submitButton.disabled = false
+  }
+})
