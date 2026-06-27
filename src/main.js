@@ -23,12 +23,14 @@ const card = (product) => `
     </div>
   </article>`
 
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuAjjxtQM4EU1BA0_9gJGlgBOMktZzPdu6pCCpHKtaELYssDLvfTK1oPUo6QCOm52fbA/exec'
+
 document.querySelector('#app').innerHTML = `
   <div class="announcement">WELCOME GIFT · 회원가입 시 청첩장 샘플 키트 1종 증정 <button aria-label="공지 닫기">×</button></div>
   <header class="header">
     <a class="logo header-logo" href="#top" aria-label="서제로 홈"><img src="/logo.png" alt="서제로"></a>
     <nav class="desktop-nav" aria-label="주요 메뉴">
-      <a href="#collection">COLLECTION</a><a href="#story">OUR STORY</a><a href="#guide">GUIDE</a>
+      <a href="#collection">COLLECTION</a><a href="#story">OUR STORY</a><a href="#guide">GUIDE</a><a href="#form-board">양식 입력</a>
     </nav>
     <div class="header-actions"><button class="search" aria-label="검색">⌕</button><a href="#cart">CART <span>(0)</span></a><button class="menu" aria-label="메뉴 열기"><i></i><i></i></button></div>
   </header>
@@ -59,30 +61,18 @@ document.querySelector('#app').innerHTML = `
 
     <section class="custom" id="guide">
       <div class="custom-visual"><div class="custom-card"><span>SEOZERO</span><strong>J &amp; S</strong><small>WITH ALL OUR LOVE</small></div><span class="wax-seal">S</span></div>
-      <div class="custom-copy"><p class="eyebrow">YOUR OWN CHAPTER</p><h2>우리다운 청첩장을<br>함께 만들어가요.</h2><p>종이, 글꼴, 색감부터 문장 하나까지.<br>서제로의 맞춤 디자인 서비스로 온전히 당신다운<br>첫인사를 완성해 보세요.</p><a class="dark-button" href="#consult">1:1 DESIGN CONSULTING <span>→</span></a></div>
+      <div class="custom-copy"><p class="eyebrow">YOUR OWN CHAPTER</p><h2>우리다운 청첩장을<br>함께 만들어가요.</h2><p>종이, 글꼴, 색감부터 문장 하나까지.<br>서제로의 맞춤 디자인 서비스로 온전히 당신다운<br>첫인사를 완성해 보세요.</p><a class="dark-button" href="#form-board">양식 입력하기 <span>→</span></a></div>
     </section>
 
-    <section class="consult" id="consult">
-      <div class="consult-copy">
-        <p class="eyebrow">DESIGN CONSULTING</p>
-        <h2>Request</h2>
-        <p>청첩장 상담을 남겨주시면 확인 후 연락드립니다.</p>
-      </div>
-      <form class="consult-form" data-consult-form>
-        <label>
-          <span>Name</span>
-          <input name="name" autocomplete="name" required />
-        </label>
-        <label>
-          <span>Email</span>
-          <input name="email" type="email" autocomplete="email" required />
-        </label>
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <button class="dark-button" type="submit">SEND REQUEST <span>></span></button>
-        <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+    <section class="form-board" id="form-board">
+      <div class="section-heading"><div><p class="eyebrow">ORDER REQUEST BOARD</p><h2>양식 입력</h2></div><p class="board-note">청첩장 제작에 필요한 내용을 게시판 양식으로 남겨주세요.</p></div>
+      <form class="board-form" id="board-form">
+        <div class="board-row"><label for="request-title">제목</label><input id="request-title" name="title" type="text" placeholder="예: 청첩장 제작 문의드립니다" required></div>
+        <div class="board-row split"><div><label for="bride">신부 성함</label><input id="bride" name="bride" type="text" placeholder="성함 입력" required></div><div><label for="groom">신랑 성함</label><input id="groom" name="groom" type="text" placeholder="성함 입력" required></div></div>
+        <div class="board-row split"><div><label for="wedding-date">예식일</label><input id="wedding-date" name="weddingDate" type="date" required></div><div><label for="phone">연락처</label><input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required></div></div>
+        <div class="board-row"><label for="design-type">희망 디자인</label><select id="design-type" name="designType" required><option value="">디자인을 선택해주세요</option><option>The Garden</option><option>Blue Hour</option><option>A Quiet Day</option><option>Love Letter</option><option>맞춤 디자인 상담</option></select></div>
+        <div class="board-row"><label for="request-message">요청 내용</label><textarea id="request-message" name="message" rows="7" placeholder="원하는 분위기, 수량, 문구, 종이 질감 등 제작에 필요한 내용을 적어주세요." required></textarea></div>
+        <div class="board-actions"><p id="board-status">등록하면 구글 스프레드시트에 게시글이 저장됩니다.</p><button type="submit">등록하기</button></div>
       </form>
     </section>
 
@@ -91,37 +81,40 @@ document.querySelector('#app').innerHTML = `
   <footer><div class="footer-top"><a class="logo footer-logo" href="#top" aria-label="서제로 홈"><img src="/logo.png" alt="서제로"></a><p>인생의 가장 빛나는 시작을<br>아름다운 종이 위에 기록합니다.</p><a class="instagram" href="#instagram">INSTAGRAM ↗</a></div><div class="footer-bottom"><span>© 2026 SEOZERO. ALL RIGHTS RESERVED.</span><span>SEOUL, KOREA · HELLO@SEOZERO.COM</span><span>TERMS &nbsp; PRIVACY</span></div></footer>
 `
 
-const appsScriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL
-const consultForm = document.querySelector('[data-consult-form]')
-const formStatus = document.querySelector('[data-form-status]')
+const boardForm = document.querySelector('#board-form')
+const boardStatus = document.querySelector('#board-status')
 
-consultForm?.addEventListener('submit', async (event) => {
+boardForm.addEventListener('submit', async (event) => {
   event.preventDefault()
 
-  if (!appsScriptUrl) {
-    formStatus.textContent = 'Apps Script URL이 설정되지 않았습니다.'
+  if (!GOOGLE_APPS_SCRIPT_URL) {
+    boardStatus.textContent = 'Apps Script 배포 URL이 아직 연결되지 않았습니다.'
+    boardStatus.className = 'is-error'
     return
   }
 
-  const submitButton = consultForm.querySelector('button[type="submit"]')
-  const formData = new FormData(consultForm)
-  const payload = Object.fromEntries(formData.entries())
+  const submitButton = boardForm.querySelector('button[type="submit"]')
+  const payload = Object.fromEntries(new FormData(boardForm).entries())
+  payload.createdAt = new Date().toISOString()
 
-  formStatus.textContent = '전송 중입니다.'
   submitButton.disabled = true
+  boardStatus.textContent = '등록 중입니다...'
+  boardStatus.className = ''
 
   try {
-    await fetch(appsScriptUrl, {
+    await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload),
     })
 
-    consultForm.reset()
-    formStatus.textContent = '상담 신청이 접수되었습니다.'
-  } catch (error) {
-    formStatus.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.'
+    boardForm.reset()
+    boardStatus.textContent = '등록되었습니다. 구글 스프레드시트에서 확인할 수 있습니다.'
+    boardStatus.className = 'is-success'
+  } catch {
+    boardStatus.textContent = '등록에 실패했습니다. 잠시 후 다시 시도해주세요.'
+    boardStatus.className = 'is-error'
   } finally {
     submitButton.disabled = false
   }
