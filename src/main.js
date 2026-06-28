@@ -110,7 +110,7 @@ boardForm.addEventListener('submit', async (event) => {
     })
 
     boardForm.reset()
-    boardStatus.textContent = '등록되었습니다. 구글 스프레드시트에서 확인할 수 있습니다.'
+    boardStatus.textContent = '정상적으로 접수되었습니다. 곧 연락드릴게요 !'
     boardStatus.className = 'is-success'
   } catch {
     boardStatus.textContent = '등록에 실패했습니다. 잠시 후 다시 시도해주세요.'
